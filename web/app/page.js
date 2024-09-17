@@ -1,101 +1,94 @@
-import Image from "next/image";
+'use client'
 
-export default function Home() {
+import React, { useState } from 'react'
+
+export default function AlgalBloomsWebsite() {
+
+  function onClick() {
+    window.open("https://dashboard.blooket.com/edit?id=66e89db5003e646f6caf8a1d")
+  }
+  const [activeTab, setActiveTab] = useState('overview')
+
+  const tabContent = {
+    overview: (
+      <div>
+        <h2 className="text-xl font-bold mb-2">What are Algal Blooms?</h2>
+        <p>Harmful algal blooms occur when toxin-producing algal consistently grows in bodies of water. These blooms can have significant impacts on both benthic (bottom) and pelagic (water column) environments.</p>
+      </div>
+    ),
+    problems: (
+      <div>
+        <h2 className="text-xl font-bold mb-2">Environmental Impact</h2>
+
+        <h3 className="ml-2 text-lg font-semibold mt-2">Benthic Zone Effects:</h3>
+        <ul className="list-disc pl-5 ml-3">
+          <li>Oxygen depletion</li>
+          <li>Light reduction</li>
+          <li>Altered habitat structure</li>
+        </ul>
+
+        <h3 className="ml-2 text-lg font-semibold mt-2">Pelagic Zone Effects:</h3>
+        <ul className="list-disc pl-5 ml-3">
+          <li>Eutrophication</li>
+          <li>Toxicity</li>
+          <li>Disruption of food webs</li>
+          <li>Altered temperature and chemistry</li>
+        </ul>
+      </div>
+    ),
+    solutions: (
+      <div>
+        <h2 className="text-xl font-bold mb-2">Combating Algal Blooms</h2>
+        <ul className="list-disc pl-5">
+          <li><strong>Aeration:</strong> Creating water movement to increase oxygen dissolution.</li>
+          <li><strong>Additives:</strong> Using substances in small amounts for preservation.</li>
+          <li><strong>Ultrasonic Technology:</strong> Employing sound waves to limit algal's access to sunlight and nutrients.</li>
+          <li><strong>Stable Isotopes:</strong> Utilizing ratios and mixing models to study predation and competition.</li>
+          <li><strong>Molecular Methods:</strong> Implementing techniques like barcoding and metagenomics to study ecological interactions.</li>
+        </ul>
+      </div>
+    ),
+    interactive: (
+      <div>
+        <h2 className="text-xl font-bold mb-2">Interactive Learning</h2>
+        <p>Click the button below to start our interactive Blooket game about algal blooms.</p>
+        <button onClick={() => onClick()} className="mt-4 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+          Launch Blooket Game
+        </button>
+      </div>
+    ),
+  }
+
   return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="https://nextjs.org/icons/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-semibold">
-              app/page.js
-            </code>
-            .
-          </li>
-          <li>Save and see your changes instantly.</li>
-        </ol>
-
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
+    <div className="text-black bg-white min-h-screen w-[100vw] container mx-auto p-4">
+      <h1 className="text-4xl font-bold mb-6">Algal Blooms: Understanding the Impact</h1>
+      
+      <div className="mb-4">
+        {Object.keys(tabContent).map((tab) => (
+          <button
+            key={tab}
+            onClick={() => setActiveTab(tab)}
+            className={`mr-2 px-4 py-2 rounded ${
+              activeTab === tab ? 'bg-blue-500 text-white' : 'bg-gray-200'
+            }`}
           >
-            <Image
-              className="dark:invert"
-              src="https://nextjs.org/icons/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:min-w-44"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
-        </div>
-      </main>
-      <footer className="row-start-3 flex gap-6 flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="https://nextjs.org/icons/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="https://nextjs.org/icons/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="https://nextjs.org/icons/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
+            {tab.charAt(0).toUpperCase() + tab.slice(1)}
+          </button>
+        ))}
+      </div>
+      
+      <div className="bg-[#f4f4f4] hover:scale-[1.02] p-6 rounded-lg shadow-md">
+        {tabContent[activeTab]}
+      </div>
+      
+      <footer className="mt-8 text-center text-sm text-gray-500">
+        <p>Sources:</p>
+        <ul className="list-none">
+          <li>National Institute of Environmental Health Sciences</li>
+          <li>How to Prevent Algal Blooms in Lakes and Reservoirs</li>
+          <li><a href="https://besjournals.onlinelibrary.wiley.com/doi/full/10.1111/1365-2656.13947" className="underline">British Ecological Society Journal</a></li>
+        </ul>
       </footer>
     </div>
-  );
+  )
 }
