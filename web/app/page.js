@@ -1,18 +1,19 @@
 'use client'
 
 import React, { useState } from 'react'
+import Image from 'next/image'
 
 export default function AlgalBloomsWebsite() {
 
   function onClick() {
-    window.open("https://dashboard.blooket.com/edit?id=66e89db5003e646f6caf8a1d")
+    window.open("https://dashboard.blooket.com/set/66e89db5003e646f6caf8a1d")
   }
   const [activeTab, setActiveTab] = useState('overview')
 
   const tabContent = {
     overview: (
       <div>
-        <h2 className="text-xl font-bold mb-2">What are Algal Blooms?</h2>
+        <h2 className="text-xl font-bold mb-2">What are Algal Blooms (HABs)?</h2>
         <p>Harmful algal blooms occur when toxin-producing algal consistently grows in bodies of water. These blooms can have significant impacts on both benthic (bottom) and pelagic (water column) environments.</p>
       </div>
     ),
@@ -79,6 +80,16 @@ export default function AlgalBloomsWebsite() {
       
       <div className="bg-[#f4f4f4] hover:scale-[1.02] p-6 rounded-lg shadow-md">
         {tabContent[activeTab]}
+      </div>
+
+      <div className="mt-8">
+        <Image 
+          src="/image.png" 
+          alt="Algal Bloom Illustration" 
+          width={500} 
+          height={300} 
+          layout="responsive"
+        />
       </div>
       
       <footer className="mt-8 text-center text-sm text-gray-500">
